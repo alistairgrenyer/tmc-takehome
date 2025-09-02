@@ -4,20 +4,17 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 import os
 
-# this is the Alembic Config object, which provides access to the values within the .ini file in use.
 config = context.config
 
-# Interpret the config file for Python logging.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Set SQLAlchemy URL from env
 config.set_main_option("sqlalchemy.url", os.getenv("DATABASE_URL", ""))
 
 target_metadata = None
 
 from app.db.session import Base
-from app.models.user import User  # noqa: F401
+from app.models.user import User
 
 target_metadata = Base.metadata
 

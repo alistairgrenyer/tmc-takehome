@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . ./
 
-RUN chmod +x ./start.sh
+# Ensure shell script has Unix line endings and is executable (handles Windows checkouts)
+RUN sed -i 's/\r$//' ./start.sh && chmod +x ./start.sh
 
 EXPOSE 8000
 CMD ["./start.sh"]

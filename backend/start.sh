@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-# Wait for DB if needed (compose healthcheck covers, but keep a small retry)
+# Healthcheck DB connection before starting backend
 python - <<'PY'
 import time, os
 import socket
